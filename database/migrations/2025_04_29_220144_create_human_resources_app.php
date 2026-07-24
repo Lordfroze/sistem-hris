@@ -29,6 +29,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
+
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
@@ -39,18 +40,22 @@ return new class extends Migration
             $table->date('hire_date')->nullable();
             $table->foreignId('department_id')->constrained('departments');
             $table->foreignId('role_id')->constrained('roles');
-            $table->foreignId('status');
+            $table->string('status');
             $table->decimal('salary', 10, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+
 
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('assigned_to')->constrained('employees'); // Foreign key to employees table
-            $table->foreignId('status');
+            $table->date('due_date');
+            $table->string('status');
+            $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('payroll', function (Blueprint $table) {
@@ -86,7 +91,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
     }
 
     /**
