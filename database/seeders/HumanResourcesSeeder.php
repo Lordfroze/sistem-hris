@@ -43,28 +43,146 @@ class HumanResourcesSeeder extends Seeder
 
         DB::table('roles')->insert([
             [
-                'name' => 'HR',
+                'title' => 'HR',
                 'description' => 'Handling Human Resources Department',
-                'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
 
             [
-                'name' => 'IT',
+                'title' => 'IT',
                 'description' => 'Handling Code Department IT',
-                'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
 
             [
-                'name' => 'Sales',
+                'title' => 'Sales',
                 'description' => 'Handling Sales Department',
-                'status' => 'active',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ]);
+
+        DB::table('employees')->insert([
+            [
+                'fullname' => $faker->name,
+                'email' => $faker->email,
+                'phone_number' => $faker->phoneNumber,
+                'address' => $faker->address,
+                'birth_date' => $faker->dateTimeBetween('-30 years', '-18 years'),
+                'department_id' => 1,
+                'role_id' => 1,
+                'status' => 'active',
+                'salary' => $faker->randomFloat(2, 1000, 5000),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'deleted_at' => null,
+            ],
+
+            [
+                'fullname' => $faker->name,
+                'email' => $faker->email,
+                'phone_number' => $faker->phoneNumber,
+                'address' => $faker->address,
+                'birth_date' => $faker->dateTimeBetween('-30 years', '-18 years'),
+                'department_id' => 1,
+                'role_id' => 1,
+                'status' => 'active',
+                'salary' => $faker->randomFloat(2, 1000, 5000),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'deleted_at' => null,
+            ]
+        ]);
+
+        DB::table('tasks')->insert([
+            [
+                'title' => $faker->sentence(3),
+                'description' => $faker->paragraph,
+                'assigned_to' => 1,
+                'due_date' => Carbon::parse('2027-02-15'),
+                'status' => 'pending',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'title' => $faker->sentence(3),
+                'description' => $faker->paragraph,
+                'assigned_to' => 1,
+                'due_date' => Carbon::parse('2027-02-15'),
+                'status' => 'pending',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]
+        ]);
+
+
+        DB::table('payroll')->insert([
+            [
+                'employee_id' => 1,
+                'salary' => $faker->randomFloat(2, 1000, 5000),
+                'bonuses' => $faker->randomFloat(2, 1000, 5000),
+                'deductions' => $faker->randomFloat(2, 500, 4000),
+                'net_salary' => $faker->randomFloat(2, 1000, 5000),
+                'pay_date' => Carbon::parse('2027-02-15'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'employee_id' => 2,
+                'salary' => $faker->randomFloat(2, 1000, 5000),
+                'bonuses' => $faker->randomFloat(2, 1000, 5000),
+                'deductions' => $faker->randomFloat(2, 500, 4000),
+                'net_salary' => $faker->randomFloat(2, 1000, 5000),
+                'pay_date' => Carbon::parse('2027-02-15'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        ]);
+
+        DB::table('presences')->insert([
+            [
+                'employee_id' => 1,
+                'check_in' => Carbon::parse('2027-02-15 08:00:00'),
+                'check_out' => Carbon::parse('2027-02-15 17:00:00'),
+                'date' => Carbon::parse('2027-02-15'),
+                'status' => 'present',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'employee_id' => 2,
+                'check_in' => Carbon::parse('2027-02-15 08:00:00'),
+                'check_out' => Carbon::parse('2027-02-15 17:00:00'),
+                'date' => Carbon::parse('2027-02-15'),
+                'status' => 'present',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
+        ]);
+
+        DB::table('leave_requests')->insert(
+            [
+                [
+                    'employee_id' => 1,
+                    'leave_type' => 'sick leave',
+                    'start_date' => Carbon::parse('2027-02-20'),
+                    'end_date' => Carbon::parse('2027-02-23'),
+                    'status' => 'pending',
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+                [
+                    'employee_id' => 2,
+                    'leave_type' => 'Vacation',
+                    'start_date' => Carbon::parse('2027-02-20'),
+                    'end_date' => Carbon::parse('2027-02-23'),
+                    'status' => 'pending',
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ],
+            ]
+        );
     }
 }
