@@ -24,6 +24,10 @@
     <link
         rel="stylesheet"
         href="{{ asset('mazer/assets/compiled/css/iconly.css') }}" />
+    <!-- Need: Simple Datatables -->
+    <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/table-datatables.css') }}">
+
 </head>
 
 <body>
@@ -171,6 +175,13 @@
     <!-- Need: Apexcharts -->
     <script src="{{ asset('mazer/assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/dashboard.js') }}"></script>
+
+    <!-- Need: Simple Datatables -->
+    <script src="{{ asset('mazer/assets/extensions/simple-datatables/simple-datatables.js') }}"></script>
+    <script src="{{ asset('mazer/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('mazer/assets/static/js/pages/simple-datatables.js') }}"></script>
+
+
 </body>
 
 </html>
