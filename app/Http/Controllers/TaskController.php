@@ -21,7 +21,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        // menampilkan form create task
+        return view('tasks.create');
     }
 
     /**

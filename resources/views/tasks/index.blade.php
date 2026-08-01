@@ -33,7 +33,8 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-end">
-                    <a href="#" class="btn btn-primary mb-3 ms-auto">New Task</a>
+                    <!-- tombol create task mengarah ke route create task -->
+                    <a href="{{route('tasks.create')}}" class="btn btn-primary mb-3 ms-auto">New Task</a>
                 </div>
                 <table class="table table-striped" id="table1">
                     <thead>
