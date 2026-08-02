@@ -27,6 +27,8 @@
     <!-- Need: Simple Datatables -->
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/table-datatables.css') }}">
+    <!-- flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
 
@@ -180,8 +182,14 @@
     <script src="{{ asset('mazer/assets/extensions/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('mazer/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
     <script src="{{ asset('mazer/assets/static/js/pages/simple-datatables.js') }}"></script>
-
-
+    <!-- flatpickr date picker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- custom script dari flatpickr untuk mengatur format tanggal dan jam -->
+    <script>
+        let date = flatpickr('.date', {
+            dateFormat: 'Y-m-d'
+        })
+    </script>
 </body>
 
 </html>
