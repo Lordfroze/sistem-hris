@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Employee;
 
 class TaskController extends Controller
 {
@@ -22,7 +23,8 @@ class TaskController extends Controller
     public function create()
     {
         // menampilkan form create task
-        return view('tasks.create');
+        $employees = Employee::all();
+        return view('tasks.create', compact('employees'));
     }
 
     /**
@@ -30,7 +32,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi form create task
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'assigned_to' => 'required',
+            'due_date' => 'required|date',
+            'status' => 'required|string',
+        ]);
+
+        // Jika validasi berhasil, simpan ke ke database
+        Task::create($validated);
+
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully');
     }
 
     /**

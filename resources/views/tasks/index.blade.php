@@ -36,6 +36,13 @@
                     <!-- tombol create task mengarah ke route create task -->
                     <a href="{{route('tasks.create')}}" class="btn btn-primary mb-3 ms-auto">New Task</a>
                 </div>
+                <!-- notification success -->
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+                @endif
+                <!-- table task -->
                 <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
