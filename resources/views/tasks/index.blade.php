@@ -76,7 +76,8 @@
                                 @elseif($task->status == 'done')
                                 <a href="#" class="btn btn-warning btn-sm">Mark Pending</a>
                                 @endif
-                                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                <!-- tombol edit task mengarah ke route edit task dengan id task  -->
+                                <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>

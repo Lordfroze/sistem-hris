@@ -58,17 +58,30 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        //
+        $employees = Employee::all();
+        return view('tasks.edit', compact('task', 'employees'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        //validasi form update task
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'assigned_to' => 'required',
+            'due_date' => 'required|date',
+            'status' => 'required|string',
+        ]);
+
+        // Jika validasi berhasil, update ke database
+        $task->update($validated);
+
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
     }
 
     /**
