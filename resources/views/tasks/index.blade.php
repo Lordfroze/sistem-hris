@@ -54,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($tasks as $task)
+                        @foreach($tasks as $task) <!-- loop task untuk menampilkan data task -->
                         <tr>
                             <td>{{$task->title}}</td>
                             <td>{{$task->employee->fullname}}</td>
@@ -78,7 +78,12 @@
                                 @endif
                                 <!-- tombol edit task mengarah ke route edit task dengan id task  -->
                                 <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                <!-- tombol delete task mengarah ke route delete task dengan id task -->
+                                <form action="{{route('tasks.destroy', $task->id)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
