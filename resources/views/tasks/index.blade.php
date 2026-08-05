@@ -70,11 +70,11 @@
                                 @endif
                             </td>
                             <td>
-                                <a href=" #" class="btn btn-info btn-sm">View</a>
+                                <a href="{{route('tasks.show', $task->id)}}" class="btn btn-info btn-sm">View</a>
                                 @if($task->status == 'pending')
-                                <a href="#" class="btn btn-success btn-sm">Mark Done</a>
+                                <a href="{{route('tasks.done', $task->id)}}" class="btn btn-success btn-sm">Mark Done</a>
                                 @elseif($task->status == 'done')
-                                <a href="#" class="btn btn-warning btn-sm">Mark Pending</a>
+                                <a href="{{route('tasks.pending', $task->id)}}" class="btn btn-warning btn-sm">Mark Pending</a>
                                 @endif
                                 <!-- tombol edit task mengarah ke route edit task dengan id task  -->
                                 <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-primary btn-sm">Edit</a>

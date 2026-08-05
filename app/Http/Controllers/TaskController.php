@@ -50,9 +50,9 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task)
     {
-        //
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -82,6 +82,22 @@ class TaskController extends Controller
         $task->update($validated);
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully');
+    }
+
+    // mark done task
+    public function done(int $id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'done']);
+        return redirect()->route('tasks.index')->with('success', 'Task marked as done successfully');
+    }
+
+    // mark pending task
+    public function pending(int $id)
+    {
+        $task = Task::find($id);
+        $task->update(['status' => 'pending']);
+        return redirect()->route('tasks.index')->with('success', 'Task marked as pending successfully');
     }
 
     /**
