@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\EmployeeController;
 
 
 
@@ -12,12 +13,15 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+// route untuk task resource
 Route::resource('tasks', TaskController::class);
 // route untuk mark done task
 Route::get('/tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done');
 // route untuk mark pending task
 Route::get('/tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending');
 
+// Route resource untuk employee resource
+Route::resource('/employees', EmployeeController::class);
 
 
 Route::middleware('auth')->group(function () {
