@@ -45,4 +45,12 @@ class EmployeeController extends Controller
         Employee::create($request->all());
         return redirect()->route('employees.index')->with('success', 'Employee created successfully');
     }
+
+
+    // show
+    public function show($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('employees.show', compact('employee'));
+    }
 }
