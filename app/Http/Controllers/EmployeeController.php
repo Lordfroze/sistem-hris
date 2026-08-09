@@ -53,4 +53,34 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         return view('employees.show', compact('employee'));
     }
+
+    // edit
+    public function edit($id)
+    {
+        $employee = Employee::findOrFail($id);
+        $departments = Department::all();
+        $roles = Role::all();
+        return view('employees.edit', compact('employee', 'departments', 'roles'));
+    }
+
+    // update
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'fullname' => 'required|string|max:255',
+            'email' => 'required|unique:employees|max:225',
+            'phone_number' => 'required|string|max:25',
+            'address' => 'nullable|string|max:255',
+            'birth_date' => 'required|date',
+            'hire_date' => 'required|date',
+            'department_id' => 'required',
+            'role_id' => 'required',
+            'status' => 'required|string',
+            'salary' => 'required|numeric|'
+        ]);
+
+        $employee = Employee::findOrFail($id);
+        $employee->update($request->all());
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully');
+    }
 }
