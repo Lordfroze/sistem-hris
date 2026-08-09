@@ -26,7 +26,7 @@ class Employee extends Model
     // relasi dengan table department
     public function department()
     {
-        return $this->belongsTo(Departmen::class, 'department_id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
     // relasi dengan table role
     public function role()

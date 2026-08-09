@@ -71,12 +71,12 @@
                             <td>
                                 <!-- status employee -->
                                 @if($employee->status == 'active')
-                                <span class="text-success">{{$employee->status}}</span>
+                                <span class="text-success">{{ ucfirst($employee->status) }}</span>
                                 @else
-                                <span class="text-warning">{{$employee->status}}</span>
+                                <span class="text-warning">{{ ucfirst($employee->status) }}</span>
                                 @endif
                             </td>
-                            <td>{{$employee->salary}}</td>
+                            <td>{{ number_format($employee->salary) }}</td>
                             <td>
                                 <a href="{{route('employees.show', $employee->id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-info btn-sm">View</a>
                                 <a href="{{route('employees.edit', $employee->id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning btn-sm">Edit</a>
