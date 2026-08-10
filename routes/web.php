@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DepartmentController;
 
 
 
@@ -19,9 +20,10 @@ Route::resource('tasks', TaskController::class);
 Route::get('/tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done');
 // route untuk mark pending task
 Route::get('/tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending');
-
 // Route resource untuk employee resource
 Route::resource('/employees', EmployeeController::class);
+// route untuk department resource
+Route::resource('/departments', DepartmentController::class);
 
 
 Route::middleware('auth')->group(function () {

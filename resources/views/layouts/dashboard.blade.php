@@ -112,10 +112,31 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('tasks.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Tasks</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('employees.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Employees</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('employees.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Department</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item  has-sub">
-                            <a href="#" class="sidebar-link">
+                            <a href="" class="sidebar-link">
                                 <i class="bi bi-grid-1x2-fill"></i>
-                                <span>Layouts</span>
+                                <span>list</span>
                             </a>
 
                             <ul class="submenu ">
