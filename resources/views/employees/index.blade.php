@@ -80,6 +80,7 @@
                             <td>
                                 <a href="{{route('employees.show', $employee->id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-info btn-sm">View</a>
                                 <a href="{{route('employees.edit', $employee->id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-warning btn-sm">Edit</a>
+                                <!-- delete employee -->
                                 <form action="{{route('employees.destroy', $employee->id)}}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
