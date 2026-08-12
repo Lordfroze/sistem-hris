@@ -32,4 +32,23 @@ class RoleController extends Controller
         Role::create($request->all());
         return redirect()->route('roles.index')->with('success', 'Role created successfully');
     }
+
+    // edit dengan menggunakan Role Model
+    public function edit(Role $role)
+    {
+        return view('roles.edit', compact('role'));
+    }
+
+    // update dengan menggunakan Role Model
+    public function update(Request $request, Role $role)
+    {
+        $request->validate(
+            [
+                'title' => 'required|string|max:255',
+                'description' => 'nullable'
+            ]
+        );
+        $role->update($request->all());
+        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+    }
 }
