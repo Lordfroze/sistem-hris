@@ -127,9 +127,16 @@
                         </li>
 
                         <li class="sidebar-item  ">
-                            <a href="{{ route('employees.index') }}" class="sidebar-link">
+                            <a href="{{ route('departments.index') }}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Department</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('roles.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Roles</span>
                             </a>
                         </li>
 
