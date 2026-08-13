@@ -140,6 +140,13 @@
                             </a>
                         </li>
 
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('presences.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Presences</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-item  has-sub">
                             <a href="" class="sidebar-link">
                                 <i class="bi bi-grid-1x2-fill"></i>
