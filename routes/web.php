@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PresenceController;
+use App\Http\Controllers\PayrollController;
 
 
 
@@ -30,6 +31,8 @@ Route::resource('/departments', DepartmentController::class);
 Route::resource('/roles', RoleController::class);
 // route untuk presence resource
 Route::resource('/presences', PresenceController::class);
+// route untuk payroll resource
+Route::resource('/payrolls', PayrollController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
