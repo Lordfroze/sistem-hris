@@ -68,4 +68,11 @@ class PayrollController extends Controller
         $payroll->update($request->all());
         return redirect()->route('payrolls.index')->with('success', 'Payroll updated successfully');
     }
+
+    // destroy
+    public function destroy(Payroll $payroll)
+    {
+        $payroll->delete();
+        return redirect()->route('payrolls.index')->with('success', 'Payroll deleted successfully');
+    }
 }
