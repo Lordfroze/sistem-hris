@@ -69,6 +69,12 @@ class PayrollController extends Controller
         return redirect()->route('payrolls.index')->with('success', 'Payroll updated successfully');
     }
 
+    // show
+    public function show(Payroll $payroll)
+    {
+        return view('payrolls.show', compact('payroll'));
+    }
+
     // destroy
     public function destroy(Payroll $payroll)
     {

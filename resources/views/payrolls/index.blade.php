@@ -66,8 +66,12 @@
                             <td>{{$payroll->pay_date}}</td>
 
                             <td>
-                                <!-- tombol edit presence mengarah ke route edit presence dengan id presence -->
+                                <!-- tombol view payroll mengarah ke route view payroll dengan id payroll -->
+                                <a href="{{route('payrolls.show', $payroll->id)}}" class="btn btn-info btn-sm">Salary Slip</a>
+                                <!-- tombol edit payroll mengarah ke route edit payroll dengan id payroll -->
                                 <a href="{{route('payrolls.edit', $payroll->id)}}" class="btn btn-primary btn-sm">Edit</a>
+
+
                                 <!-- tombol delete payroll mengarah ke route delete payroll dengan id payroll -->
                                 <form action="{{route('payrolls.destroy', $payroll->id)}}" method="POST" class="d-inline">
                                     @csrf
