@@ -62,8 +62,10 @@
                             <td>{{$leaveRequest->start_date}}</td>
                             <td>{{$leaveRequest->end_date}}</td>
                             <td>
-                                @if($leaveRequest->status == 'approved')
+                                @if($leaveRequest->status == 'confirm')
                                 <span class="text-success">{{$leaveRequest->status}}</span>
+                                @elseif($leaveRequest->status == 'reject')
+                                <span class="text-danger">{{$leaveRequest->status}}</span>
                                 @else
                                 <span class="text-warning">{{$leaveRequest->status}}</span>
                                 @endif
@@ -71,8 +73,16 @@
                             </td>
 
                             <td>
-                                <!-- tombol view payroll mengarah ke route view payroll dengan id payroll -->
-                                <a href="{{route('leave-requests.show', $leaveRequest->id)}}" class="btn btn-info btn-sm">View</a>
+                                <!-- tombol confirm dan reject leave request hanya muncul jika status leave request adalah pending atau reject -->
+                                @if($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
+                                <!-- tombol confirm leave request mengarah ke route confirm leave request dengan id leave request -->
+                                <a href="{{route('leave-requests.confirm', $leaveRequest->id)}}" class="btn btn-success btn-sm">Confirm</a>
+                                @else
+                                <!-- tombol reject leave request mengarah ke route reject leave request dengan id leave request -->
+                                <a href="{{route('leave-requests.reject', $leaveRequest->id)}}" class="btn btn-secondary btn-sm">Reject</a>
+                                @endif
+
+
                                 <!-- tombol edit leave request mengarah ke route edit leave request dengan id leave request -->
                                 <a href="{{route('leave-requests.edit', $leaveRequest->id)}}" class="btn btn-primary btn-sm">Edit</a>
 

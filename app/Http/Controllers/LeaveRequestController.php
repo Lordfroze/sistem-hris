@@ -61,4 +61,24 @@ class LeaveRequestController extends Controller
         $leaveRequest->update($request->all());
         return redirect()->route('leave-requests.index')->with('success', 'Leave request updated successfully');
     }
+
+    // confirm
+    public function confirm(int $id)
+    {
+        $leaveRequest = LeaveRequest::findOrFail($id);
+        $leaveRequest->update([
+            'status' => 'confirm'
+        ]);
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request confirmed successfully');
+    }
+
+    // reject
+    public function reject(int $id)
+    {
+        $leaveRequest = LeaveRequest::findOrFail($id);
+        $leaveRequest->update([
+            'status' => 'reject'
+        ]);
+        return redirect()->route('leave-requests.index')->with('success', 'Leave request rejected successfully');
+    }
 }

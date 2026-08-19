@@ -36,6 +36,11 @@ Route::resource('/presences', PresenceController::class);
 Route::resource('/payrolls', PayrollController::class);
 // route untuk leave request resource
 Route::resource('/leave-requests', LeaveRequestController::class);
+// route untuk confirm dan reject leave request
+Route::get('/leave-requests/confirm/{id}', [LeaveRequestController::class, 'confirm'])->name('leave-requests.confirm');
+Route::get('/leave-requests/reject/{id}', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
