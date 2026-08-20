@@ -105,6 +105,9 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
+                        <!-- cek roles jika HR -->
+                        @if(session('role') === 'HR')
+
                         <li class="sidebar-item active ">
                             <a href="index.html" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
@@ -158,6 +161,56 @@
                             <a href="{{ route('leave-requests.index') }}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Leave Requests</span>
+                            </a>
+                        </li>
+
+                        @endif
+                        <!-- endif roles -->
+
+                        <!-- cek roles jika Developer, IT, atau Sales -->
+                        @if(in_array(session('role'), ['Developer', 'IT', 'Sales']))
+                        <li class="sidebar-item active ">
+                            <a href="index.html" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('tasks.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Tasks</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('presences.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Presences</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('payrolls.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Payrolls</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('leave-requests.index') }}" class="sidebar-link">
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Leave Requests</span>
+                            </a>
+                        </li>
+                        @endif
+                        <!-- endif roles jika Developer, IT, atau Sales -->
+
+
+                        <li class="sidebar-item  ">
+                            <a href="{{ url('/logout') }}" class="sidebar-link">
+                                <i class="bi bi-box-arrow-right-fill"></i>
+                                <span>Logout</span>
                             </a>
                         </li>
 

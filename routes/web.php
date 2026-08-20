@@ -17,30 +17,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-// route untuk task resource
-Route::resource('tasks', TaskController::class);
-// route untuk mark done task
-Route::get('/tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done');
-// route untuk mark pending task
-Route::get('/tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending');
-// Route resource untuk employee resource
-Route::resource('/employees', EmployeeController::class);
-// route untuk department resource
-Route::resource('/departments', DepartmentController::class);
-// route untuk role resource
-Route::resource('/roles', RoleController::class);
-// route untuk presence resource
-Route::resource('/presences', PresenceController::class);
-// route untuk payroll resource
-Route::resource('/payrolls', PayrollController::class);
-// route untuk leave request resource
-Route::resource('/leave-requests', LeaveRequestController::class);
-// route untuk confirm dan reject leave request
-Route::get('/leave-requests/confirm/{id}', [LeaveRequestController::class, 'confirm'])->name('leave-requests.confirm');
-Route::get('/leave-requests/reject/{id}', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject');
+// middleware untuk check role user
+Route::middleware('auth')->group(function () {
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+    // Route resource untuk employee resource
+    Route::resource('/employees', EmployeeController::class)->middleware(['role:HR']);
+    // route untuk department resource
+    Route::resource('/departments', DepartmentController::class)->middleware(['role:HR']);
+    // route untuk role resource
+    Route::resource('/roles', RoleController::class)->middleware(['role:HR']);
+    // route untuk presence resource
+    Route::resource('/presences', PresenceController::class)->middleware(['role:HR,IT,Sales']);
+    // route untuk payroll resource
+    Route::resource('/payrolls', PayrollController::class)->middleware(['role:HR,IT,Sales']);
+    // route untuk leave request resource
+    Route::resource('/leave-requests', LeaveRequestController::class)->middleware(['role:HR,IT,Sales']);
+    // route untuk confirm dan reject leave request
+    Route::get('/leave-requests/confirm/{id}', [LeaveRequestController::class, 'confirm'])->name('leave-requests.confirm')->middleware(['role:HR']);
+    Route::get('/leave-requests/reject/{id}', [LeaveRequestController::class, 'reject'])->name('leave-requests.reject')->middleware(['role:HR']);
+
+    // route untuk task resource
+    Route::resource('tasks', TaskController::class)->middleware(['role:HR,IT,Sales']);
+    // route untuk mark done task
+    Route::get('/tasks/done/{id}', [TaskController::class, 'done'])->name('tasks.done')->middleware(['role:HR,IT,Sales']);
+    // route untuk mark pending task
+    Route::get('/tasks/pending/{id}', [TaskController::class, 'pending'])->name('tasks.pending')->middleware(['role:HR,IT,Sales']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
