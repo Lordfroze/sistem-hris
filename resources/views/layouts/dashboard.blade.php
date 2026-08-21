@@ -40,7 +40,7 @@
                 <div class="sidebar-header position-relative">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="logo">
-                            <a href="index.html"><img
+                            <a href="{{url('/dashboard')}}"><img
                                     src="{{ asset('mazer/assets/compiled/svg/logo.svg') }}"
                                     alt="Logo"
                                     srcset="" /></a>
@@ -109,7 +109,7 @@
                         @if(session('role') === 'HR')
 
                         <li class="sidebar-item active ">
-                            <a href="index.html" class="sidebar-link">
+                            <a href="{{url('/dashboard')}}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -170,7 +170,7 @@
                         <!-- cek roles jika Developer, IT, atau Sales -->
                         @if(in_array(session('role'), ['Developer', 'IT', 'Sales']))
                         <li class="sidebar-item active ">
-                            <a href="index.html" class="sidebar-link">
+                            <a href="{{url('/dashboard')}}" class="sidebar-link">
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -214,7 +214,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item  has-sub">
+                        <!-- <li class="sidebar-item  has-sub">
                             <a href="" class="sidebar-link">
                                 <i class="bi bi-grid-1x2-fill"></i>
                                 <span>list</span>
@@ -225,11 +225,11 @@
                                     <a href="layout-default.html" class="submenu-link">Default Layout</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
 
-                        <li class="sidebar-title">Forms &amp; Tables</li>
+                        <!-- <li class="sidebar-title">Forms &amp; Tables</li> -->
 
-                        <li class="sidebar-item  has-sub">
+                        <!-- <li class="sidebar-item  has-sub">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-hexagon-fill"></i>
                                 <span>Form Elements</span>
@@ -240,14 +240,14 @@
                                     <a href="form-element-input.html" class="submenu-link">Input</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
 
-                        <li class="sidebar-item  ">
+                        <!-- <li class="sidebar-item  ">
                             <a href="form-layout.html" class="sidebar-link">
                                 <i class="bi bi-file-earmark-medical-fill"></i>
                                 <span>Form Layout</span>
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>
