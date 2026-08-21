@@ -13,7 +13,14 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        // menampilkan semua task jika role HR
+        // jika bukan role HR, menampilkan task yang diassign ke employee yang login
+        if (session('role') == 'HR') {
+            $tasks = Task::all();
+        } else {
+            $tasks = Task::where('assigned_to', session('employee_id'))->get();
+        }
+
         return view('tasks.index', compact('tasks'));
     }
 

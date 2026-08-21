@@ -33,8 +33,11 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-end">
-                    <!-- tombol create task mengarah ke route create task -->
+
+                    <!-- tombol create task mengarah ke route create task hanya jika role HR-->
+                    @if(session('role') == 'HR')
                     <a href="{{route('tasks.create')}}" class="btn btn-primary mb-3 ms-auto">New Task</a>
+                    @endif
                 </div>
                 <!-- notification success -->
                 @if(session('success'))
@@ -76,7 +79,9 @@
                                 @elseif($task->status == 'done')
                                 <a href="{{route('tasks.pending', $task->id)}}" class="btn btn-warning btn-sm">Mark Pending</a>
                                 @endif
-                                <!-- tombol edit task mengarah ke route edit task dengan id task  -->
+
+                                <!-- tombol edit task mengarah ke route edit task dengan id task hanya jika role role HR-->
+                                @if(session('role') == 'HR')
                                 <a href="{{route('tasks.edit', $task->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                 <!-- tombol delete task mengarah ke route delete task dengan id task -->
                                 <form action="{{route('tasks.destroy', $task->id)}}" method="POST" class="d-inline">
@@ -84,6 +89,8 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
+                                @endif
+
                             </td>
                         </tr>
                         @endforeach
