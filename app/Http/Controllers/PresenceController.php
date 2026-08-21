@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Presence;
 use App\Models\Employee;
+use Carbon\Carbon;
 
 class PresenceController extends Controller
 {
     //index
     public function index()
     {
-        $presences = Presence::all();
+        // jika role HR, tampilkan semua presensi
+        if (session('role') == 'HR') {
+            $presences = Presence::all();
+        } else {
+            // jika role employee, tampilkan presensi employee tersebut
+            $presences = Presence::where('employee_id', session('employee_id'))->get();
+        }
+
         return view('presences.index', compact('presences'));
     }
 
@@ -25,15 +33,27 @@ class PresenceController extends Controller
     // store
     public function store(Request $request)
     {
-        $request->validate([
-            'employee_id' => 'required',
-            'check_in' => 'required',
-            'check_out' => 'required',
-            'date' => 'required|date',
-            'status' => 'required|string',
-        ]);
+        // jika role HR bisa membuat presensi untuk semua employee
+        if (session('role') == 'HR') {
+            $request->validate([
+                'employee_id' => 'required',
+                'check_in' => 'required',
+                'check_out' => 'required',
+                'date' => 'required|date',
+                'status' => 'required|string',
+            ]);
 
-        Presence::create($request->all());
+            Presence::create($request->all());
+        } else {
+            // jika role employee, hanya bisa membuat presensi untuk diri sendiri
+            Presence::create([
+                'employee_id' => session('employee_id'),
+                'check_in' => Carbon::now()->format('Y-m-d H:i:s'),
+                'check_out' => $request->check_out,
+                'date' => Carbon::now()->format('Y-m-d'),
+                'status' => 'present'
+            ]);
+        }
         return redirect()->route('presences.index')->with('success', 'Presence created successfully');
     }
 

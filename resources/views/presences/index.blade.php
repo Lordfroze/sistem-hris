@@ -51,7 +51,9 @@
                             <th>Check Out</th>
                             <th>Date</th>
                             <th>Status</th>
+                            @if(session('role') == 'HR')
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +72,8 @@
                                 @endif
                             </td>
                             <td>
-                                <!-- tombol edit presence mengarah ke route edit presence dengan id presence -->
+                                <!-- tombol edit presence mengarah ke route edit presence dengan id presence hanya untuk role HR -->
+                                @if(session('role') == 'HR')
                                 <a href="{{route('presences.edit', $presence->id)}}" class="btn btn-primary btn-sm">Edit</a>
                                 <!-- tombol delete presence mengarah ke route delete presence dengan id presence -->
                                 <form action="{{route('presences.destroy', $presence->id)}}" method="POST" class="d-inline">
@@ -78,6 +81,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
