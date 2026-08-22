@@ -33,8 +33,10 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-end">
+                    @if(session('role') == 'HR')
                     <!-- tombol create payroll mengarah ke route create payroll -->
                     <a href="{{route('payrolls.create')}}" class="btn btn-primary mb-3 ms-auto">New payroll</a>
+                    @endif
                 </div>
                 <!-- notification success -->
                 @if(session('success'))
@@ -69,6 +71,7 @@
                                 <!-- tombol view payroll mengarah ke route view payroll dengan id payroll -->
                                 <a href="{{route('payrolls.show', $payroll->id)}}" class="btn btn-info btn-sm">Salary Slip</a>
                                 <!-- tombol edit payroll mengarah ke route edit payroll dengan id payroll -->
+                                @if(session('role') == 'HR')
                                 <a href="{{route('payrolls.edit', $payroll->id)}}" class="btn btn-primary btn-sm">Edit</a>
 
 
@@ -78,6 +81,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
