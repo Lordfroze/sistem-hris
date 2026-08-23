@@ -51,7 +51,9 @@
                             <th>Start Date</th>
                             <th>End Date</th>
                             <th>Status</th>
+                            @if(session('role') == 'HR')
                             <th>Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +75,7 @@
                             </td>
 
                             <td>
+                                @if(session('role') == 'HR')
                                 <!-- tombol confirm dan reject leave request hanya muncul jika status leave request adalah pending atau reject -->
                                 @if($leaveRequest->status == 'pending' || $leaveRequest->status == 'reject')
                                 <!-- tombol confirm leave request mengarah ke route confirm leave request dengan id leave request -->
@@ -81,7 +84,6 @@
                                 <!-- tombol reject leave request mengarah ke route reject leave request dengan id leave request -->
                                 <a href="{{route('leave-requests.reject', $leaveRequest->id)}}" class="btn btn-secondary btn-sm">Reject</a>
                                 @endif
-
 
                                 <!-- tombol edit leave request mengarah ke route edit leave request dengan id leave request -->
                                 <a href="{{route('leave-requests.edit', $leaveRequest->id)}}" class="btn btn-primary btn-sm">Edit</a>
@@ -93,6 +95,7 @@
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
