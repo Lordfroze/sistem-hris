@@ -97,7 +97,8 @@
                             <h4>Grafik Visit</h4>
                         </div>
                         <div class="card-body">
-                            <div id="chart-profile-visit"></div>
+                            <!-- Membuat canvas untuk presence -->
+                            <canvas id="presence"></canvas>
                         </div>
                     </div>
                 </div>

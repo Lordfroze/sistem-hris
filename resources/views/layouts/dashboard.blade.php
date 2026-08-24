@@ -24,9 +24,16 @@
     <link
         rel="stylesheet"
         href="{{ asset('mazer/assets/compiled/css/iconly.css') }}" />
+
+    <!-- chartjs -->
+    <script src="{{ asset('mazer/assets/extensions/chart.js/chart.umd.js') }}"></script>
+
     <!-- Need: Simple Datatables -->
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/table-datatables.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('mazer/assets/extensions/simple-datatables/style.css') }}">
+
     <!-- flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -271,6 +278,10 @@
             </footer>
         </div>
     </div>
+
+    <script src="{{ asset('mazer/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
+    <script src="{{ asset('mazer/assets/static/js/pages/simple-datatables.js') }}"></script>
+
     <script src="{{ asset('mazer/assets/static/js/components/dark.js') }}"></script>
     <script src="{{ asset('mazer/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 
@@ -296,6 +307,58 @@
             dateFormat: 'Y-m-d H:i:s',
             enableTime: true,
         })
+
+        // chartjs untuk presence chart
+        var ctxBar = document.getElementById('presence').getContext('2d');
+        var myBar = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Total',
+                    data: [],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Grafik Visit'
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // mengupdate data dari backend
+        function updateData() {
+            fetch('/dashboard/presence')
+                .then(response => response.json())
+                .then((output) => {
+                    const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                    const labels = output.map(item => `${monthNames[item.month - 1]} ${item.year}`);
+                    const data = output.map(item => item.total_present);
+                    
+                    myBar.data.labels = labels;
+                    myBar.data.datasets = [{
+                        label: 'Total',
+                        data: data,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                    }];
+                    myBar.update();
+                })
+                .catch((error) => {
+                    console.error('Error fetching presence data:', error);
+                });
+        }
+        updateData();
     </script>
 </body>
 

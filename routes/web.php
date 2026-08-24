@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['role:HR,IT,Sales']);
+    Route::get('/dashboard/presence', [DashboardController::class, 'presence']);
 
     // Route resource untuk employee resource
     Route::resource('/employees', EmployeeController::class)->middleware(['role:HR']);
