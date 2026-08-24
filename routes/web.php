@@ -14,7 +14,7 @@ use App\Http\Controllers\LeaveRequestController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // middleware untuk check role user
