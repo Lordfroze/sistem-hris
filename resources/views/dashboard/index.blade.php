@@ -107,7 +107,8 @@
                 <div class="col-12 col-xl-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Latest Comments</h4>
+                            <!-- Latest Tasks -->
+                            <h4>Latest Tasks</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -115,43 +116,36 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Comment</th>
+                                            <th>Title</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($tasks as $task)
                                         <tr>
                                             <td class="col-3">
                                                 <div class="d-flex align-items-center">
                                                     <div class="avatar avatar-md">
-                                                        <img
-                                                            src="{{ asset('mazer/assets/compiled/jpg/5.jpg') }}" />
+                                                        <!-- avatar sesuai nama employee -->
+                                                        <img src="http://ui-avatars.com/api/?name={{$task->employee->fullname}}&background=random" alt="Avatar" />
                                                     </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
+                                                    <p class="font-bold ms-3 mb-0">{{$task->employee->fullname}}</p>
                                                 </div>
                                             </td>
                                             <td class="col-auto">
                                                 <p class=" mb-0">
-                                                    Congratulations on your graduation!
+                                                    {{$task->title}}
                                                 </p>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img
-                                                            src="{{ asset('mazer/assets/compiled/jpg/2.jpg') }}" />
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                </div>
-                                            </td>
+
                                             <td class="col-auto">
                                                 <p class=" mb-0">
-                                                    Wow amazing design! Can you make another
-                                                    tutorial for this design?
+                                                    {{$task->status}}
                                                 </p>
                                             </td>
+
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
